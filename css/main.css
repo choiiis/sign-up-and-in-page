@@ -1,0 +1,10 @@
+/* COMMON */
+body {
+  position: relative;
+  min-height: 100vh;
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: 'Pretendard', sans-serif;
+}
