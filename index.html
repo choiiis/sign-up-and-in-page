@@ -13,31 +13,32 @@
 </head>
 <body>
   <div class="container">
-    <!-- HEADER -->
-    <header>
-      <h2>회원가입</h2>
-      <h3>가입을 통해 더 다양한 서비스를 만나보세요!</h3>
-    </header>
+    <div class="content">
+      <!-- HEADER -->
+      <header>
+        <h2>회원가입</h2>
+        <h3>가입을 통해 더 다양한 서비스를 만나보세요!</h3>
+      </header>
 
-    <!-- INPUT -->
-    <section>
-      <div class="info" id="info__id">
-        <div>
-          <input type="text" placeholder="아이디 입력(6~20자)"/>
-          <button>중복 확인</button>
+      <!-- INPUT -->
+      <section>
+        <div class="info">
+          <div id="info__id">
+            <input type="text" placeholder="아이디 입력(6~20자)"/>
+            <button>중복 확인</button>
+          </div>
+          <div class="error-msg">사용할 수 없는 아이디입니다</div>
         </div>
-        <div class="error-msg">사용할 수 없는 아이디입니다</div>
-      </div>
-      <div class="info" id="info__pw">
-        <input type="text" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)"/>
-        <div class="error-msg">사용할 수 없는 아이디입니다</div>
-      </div>
-      <div>
-        <input type="text" class="info" 
-                id="info__pw-re" placeholder="비밀번호 재입력"/>
-        <div class="error-msg">사용할 수 없는 아이디입니다</div>
-      </div>
-    </section>
+        <div class="info">
+          <input type="text" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)"/>
+          <div class="error-msg">사용할 수 없는 아이디입니다</div>
+        </div>
+        <div class="info">
+          <input type="text" placeholder="비밀번호 재입력"/>
+          <div class="error-msg">사용할 수 없는 아이디입니다</div>
+        </div>
+      </section>
+    </div>
   </div>
 </body>
 </html>
