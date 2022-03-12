@@ -19,18 +19,17 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  border: 1px solid black;
+  border: 1px solid #f8f8f8;
   border-radius: 40px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
 }
 
 header {
-  position: absolute;
-  top: 63px;
-  left: 70px;
+
 }
 
 header h2 {
   font-size: 25px;
   font-weight: 700;
-  margin-bottom: px;
+  margin-bottom: 3px;
 }
