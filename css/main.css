@@ -20,8 +20,8 @@ button {
 /* CONTAINER */
 .container {
   position: absolute;
-  width: 466px;
-  height: 727px;
+  width: 400px;
+  height: 600px;
   top: 0;
   bottom: 0;
   left: 0;
@@ -64,6 +64,7 @@ section {
   margin: 2px 0 2px 15px;
 }
 
+/* SECTION - ID */
 .info #info__id {
   position: relative;
 }
@@ -77,4 +78,33 @@ section {
   right: 5px;
   margin: auto 0;
   border-radius: 3px;
+}
+
+/* SECTION - EMAIL */
+.info#info__email {
+  display: flex;
+  align-items: center;
+}
+
+.info#info__email input {
+  display: flex;
+  width: 50%;
+}
+
+.info#info__email span {
+  margin: 0 5px;
+}
+
+.domain {
+  position: relative;
+  width: 50%;
+}
+
+.domain .domain__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  /* overflow: hidden; */
+  max-height: 0;
 }
