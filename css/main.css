@@ -3,7 +3,7 @@ body {
   position: relative;
   min-height: 100vh;
   color: #333;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.4;
   font-family: 'Pretendard', sans-serif;
@@ -20,6 +20,7 @@ button {
 /* CONTAINER */
 .container {
   position: absolute;
+  display: flex;
   width: 400px;
   height: 600px;
   top: 0;
@@ -27,13 +28,15 @@ button {
   left: 0;
   right: 0;
   margin: auto;
+  justify-content: center;
+  align-items: center;
   border: 1px solid #f8f8f8;
   border-radius: 40px;
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
 }
 
 .content {
-  width: 350px;
+  width: 320px;
 }
 
 /* HEADER */
