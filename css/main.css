@@ -140,7 +140,7 @@ section {
 
 .info#info__email input {
   display: flex;
-  width: 100%;
+  width: 90%;
 }
 
 .info#info__email span {
@@ -148,7 +148,7 @@ section {
   margin: 0 3px;
 }
 
-.info .box#domain__list option {
+.info .box#domain-list option {
   font-size: 14px;
   background-color: #ffffff;
 }
