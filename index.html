@@ -33,11 +33,11 @@
           <div class="error-msg">사용할 수 없는 아이디입니다</div>
         </div>
         <div class="info">
-          <input class="box" type="text" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)"/>
+          <input class="box" type="password" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)"/>
           <div class="error-msg">20자 이내의 비밀번호를 입력해주세요</div>
         </div>
         <div class="info">
-          <input class="box" type="text" placeholder="비밀번호 재입력"/>
+          <input class="box" type="password" placeholder="비밀번호 재입력"/>
           <div class="error-msg">비밀번호가 일치하지 않습니다</div>
         </div>
         <div class="info" id="info__email">
@@ -45,14 +45,32 @@
           <span>@</span>
           <input disabled class="box" type="text"/>
           <select class="box" id="domain__list">
-            <option class="option">naver.com</option>
-            <option class="option">google.com</option>
-            <option class="option">nate.com</option>
-            <option class="option">kakao.com</option>
-            <option class="option">msn.com</option>
+            <option>naver.com</option>
+            <option>google.com</option>
+            <option>hanmail.net</option>
+            <option>nate.com</option>
+            <option>kakao.com</option>
+            <option>msn.com</option>
           </select>
         </div>
+        <div class="info" id="info__birth">
+          <select class="box birth-year">
+            <option disabled selected>출생 연도</option>
+          </select>
+          <select class="box birth-month">
+            <option disabled selected>월</option>
+          </select>
+          <select class="box birth-day">
+            <option disabled selected>일</option>
+          </select>
+        </div>
+        <!-- <div id="print-date"></div> -->
+        <div class="info">
+          <input class="box" type="text" placeholder="휴대폰 번호 입력 (‘-’ 제외 11자리 입력)"/>
+          <div class="error-msg">‘-’ 제외 11자리를 입력해주세요</div>
+        </div>
       </section>
+      <button id="submit">가입하기</button>
     </div>
   </div>
 </body>

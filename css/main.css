@@ -16,7 +16,6 @@ button {
   border: none;
   box-sizing: border-box;
   font-weight: 400;
-  font-size: 14px;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
 }
 
@@ -30,7 +29,6 @@ button {
   border: 1px solid #d9d6d6;
   color: #383838;
   font-weight: 400;
-  font-size: 14px;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
 }
 
@@ -51,6 +49,9 @@ select.box {
   background-color: #ffffff;
 }
 
+option {
+  font-size: 16px;
+}
 
 /* CONTAINER */
 .container {
@@ -72,9 +73,15 @@ select.box {
 
 .content {
   width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* HEADER */
+header  {
+  width: 100%;
+}
 
 header h2 {
   font-size: 25px;
@@ -105,6 +112,8 @@ section {
   right: 5px;
   margin: auto 0;
   border-radius: 3px;
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
 }
 
 /* SECTION - EMAIL */
@@ -124,5 +133,43 @@ section {
 }
 
 .info .box#domain__list option {
+  font-size: 14px;
   background-color: #ffffff;
+}
+
+/* SECTION - BIRTH */
+.info#info__birth {
+  display: flex;
+}
+
+.info#info__birth select {
+  margin-left : 7px;
+}
+
+.info#info__birth select:first-child {
+  margin-left : 0px;
+}
+
+.info#info__birth select::-webkit-scrollbar {
+  width: 10px;
+}
+
+.info#info__birth select::-webkit-scrollbar-thumb {
+  background-color: #b6b6b6;
+  border-radius: 3px;
+}
+
+.info#info__birth select::-webkit-scrollbar-track {
+  background-color: #ebe9e9;
+  border-radius: 6px;
+}
+
+/* SUBMIT */
+button#submit {
+  width: 200px;
+  height: 45px;
+  margin-top: 25px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 15px;
 }
