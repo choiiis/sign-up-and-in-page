@@ -17,6 +17,17 @@ button {
   box-sizing: border-box;
   font-weight: 400;
   font-family: 'Montserrat', 'Pretendard', sans-serif;
+  transition: .1s;
+}
+
+button:focus-visible {
+  outline: 0px solid #9191dfab;
+  background-color: rgb(125, 114, 245);
+}
+
+button:hover {
+  outline: 0px solid #9191dfab;
+  background-color: rgb(125, 114, 245);
 }
 
 .info {
@@ -38,6 +49,10 @@ button {
 
 .box::placeholder {
   color: #a0a0a0;
+}
+
+.box:focus {
+  outline: 1px solid #665ae870;
 }
 
 /* error msg */
@@ -99,11 +114,11 @@ section {
 }
 
 /* SECTION - ID */
-.info #info__id {
+.info#info__id #id-input {
   position: relative;
 }
 
-#info__id button {
+.info#info__id button {
   position: absolute;
   width: 90px;
   height: 40px;

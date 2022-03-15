@@ -1,5 +1,5 @@
 // '출생 연도' 셀렉트 박스 option 목록 동적 생성
-const birthYearEl = document.querySelector('.birth-year')
+const birthYearEl = document.querySelector('#birth-year')
 // option 목록 생성 여부 확인
 isYearOptionExisted = false;
 birthYearEl.addEventListener('focus', function () {
@@ -24,7 +24,7 @@ birthYearEl.addEventListener('focus', function () {
 // });
 
 
-const birthMonthEl = document.querySelector('.birth-month')
+const birthMonthEl = document.querySelector('#birth-month')
 isMonthOptionExisted = false;
 birthMonthEl.addEventListener('focus', function () {
   if(!isMonthOptionExisted) {
@@ -37,7 +37,7 @@ birthMonthEl.addEventListener('focus', function () {
   }
 });
 
-const birthDayEl = document.querySelector('.birth-day')
+const birthDayEl = document.querySelector('#birth-day')
 isDayOptionExisted = false;
 birthDayEl.addEventListener('focus', function () {
   if(!isDayOptionExisted) {
