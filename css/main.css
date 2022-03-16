@@ -154,9 +154,8 @@ section {
 }
 
 /* SECTION - BIRTH */
-.info#info__birth {
+.info#info__birth #birth-flex {
   display: flex;
-  margin-bottom: 20px;
 }
 
 .info#info__birth select {
