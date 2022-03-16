@@ -1,22 +1,170 @@
+// 에러 메세지 객체
+const errMsg = {
+  id: { 
+    invalid: "6~20자의 영문 소문자와 숫자만 사용 가능합니다",
+    success: "사용 가능한 아이디입니다",
+    fail: "사용할 수 없는 아이디입니다"
+  },
+  pw: "8~20자의 영문, 숫자, 특수문자를 모두 포함한 비밀번호를 입력해주세요",
+  pwRe: {
+    success: "비밀번호가 일치합니다",
+    fail: "비밀번호가 일치하지 않습니다"
+  },
+  birth: "생년월일을 다시 확인해주세요",
+  mobile: "‘-’ 제외 11자리를 입력해주세요" 
+}
+
+// 계정 정보 객체
+const account = {
+  id: null,
+  pw: null,
+  email: null,
+  birth: null,
+  mobile: null
+}
+
+/*** SECTION - ID ***/
+const idInputEl = document.querySelector('#info__id input')
+const idErrorMsgEl = document.querySelector('#info__id .error-msg')
+idInputEl.addEventListener('change', () => {
+  const idRegExp = /^[a-zA-Z0-9]{6,20}$/
+  if(idRegExp.test(idInputEl.value)) { // 유효성 검사 성공
+    idErrorMsgEl.textContent = ""
+    account.id = idInputEl.value
+  } else { // 유효성 검사 실패
+    idErrorMsgEl.textContent = errMsg.id.invalid
+    account.id = null
+  }
+  console.log(account)
+});
+
+/*** SECTION - PASSWORD ***/
+// pwVal: 패스워드, pwReVal: 패스워드 재입력, isPwValid: 패스워드 유효 여부
+let pwVal = "", pwReVal = "", isPwValid = false
+// 비밀번호와 재입력 값 일치 여부
+function checkPwValid() {
+  account.pw = null
+  if(pwVal === "" && pwReVal === "") { // 미입력
+    pwReErrorMsgEl.textContent = ""
+  }
+  else if(pwVal === pwReVal) { // 비밀번호 재입력 일치
+    if(isPwValid)
+      account.pw = pwVal
+    pwReErrorMsgEl.style.color = "green"
+    pwReErrorMsgEl.textContent = errMsg.pwRe.success
+  }
+  else { // 비밀번호 재입력 불일치
+    pwReErrorMsgEl.style.color = "red"
+    pwReErrorMsgEl.textContent = errMsg.pwRe.fail
+  }
+}
+
+const pwInputEl = document.querySelector('#info__pw input')
+const pwErrorMsgEl = document.querySelector('#info__pw .error-msg')
+pwInputEl.addEventListener('change', () => {
+  const pwRegExp = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/
+  pwVal = pwInputEl.value
+  if(pwRegExp.test(pwVal)) { // 유효성 검사 성공
+    isPwValid = true
+    pwErrorMsgEl.textContent = ""
+  } 
+  else { // 유효성 검사 실패
+    isPwValid = false
+    pwErrorMsgEl.textContent = errMsg.pw
+  }
+  checkPwValid()
+  console.log(pwVal, pwReVal, isPwValid, account)
+});
+
+/*** SECTION - PASSWORD RECHECK ***/
+const pwReInputEl = document.querySelector('#info__pwRe input')
+const pwReErrorMsgEl = document.querySelector('#info__pwRe .error-msg')
+pwReInputEl.addEventListener('change', () => {
+  pwReVal = pwReInputEl.value
+  checkPwValid()
+  console.log(pwVal, pwReVal, isPwValid, account)
+});
+
 /*** SECTION - EMAIL ***/
+emailList = ["", ""]
+function checkEmailValid() {
+  if(emailList[0] !== "" && emailList[1] !== "") {
+    account.email = emailList.join('@')
+  }
+  else
+  account.email = null
+}
+
+const emailInputEl = document.querySelector('#email-txt')
+emailInputEl.addEventListener('change', () => {
+  emailList[0] = emailInputEl.value
+  checkEmailValid()
+  console.log(account, emailList)
+})
+
+const domainInputEl = document.querySelector('#domain-txt')
+domainInputEl.addEventListener('change', () => {
+  emailList[1] = domainInputEl.value
+  checkEmailValid()
+  console.log(account, emailList)
+})
+
 // 도메인 직접 입력 or domain option 선택
 const domainListEl = document.querySelector('#domain-list')
-const domainInputEl = document.querySelector('#domain-txt')
-domainListEl.addEventListener('change', (event) => {
+domainListEl.addEventListener('change', () => {
   // option에 있는 도메인 선택 시
-  if(event.target.value !== "type") {
+  const domainSelected = domainListEl.value
+  if(domainSelected !== "type") {
     // 선택한 도메인을 input에 입력하고 disabled
-    domainInputEl.value = event.target.value
+    domainInputEl.value = domainSelected
     domainInputEl.disabled = true
+    emailList[1] = domainSelected
   } else { // 직접 입력
     // input 내용 초기화 & 입력 가능하도록 변경
     domainInputEl.value = ""
     domainInputEl.disabled = false
+    emailList[1] = ""
   }
+  checkEmailValid()
+  console.log(account, emailList)
 })
+
 
 /*** SECTION - BIRTH ***/
 const birthArr = [-1, -1, -1]
+/* 유효한 날짜인지 여부 확인 (윤년/평년) */
+function checkBirthValid(birthArr) {
+  isBirthValid = true
+  y = birthArr[0]
+  m = birthArr[1]
+  d = birthArr[2]
+  // 생년월일 모두 선택 완료 시
+  if(y > 0 && m > 0 && d > 0) {
+    if ((m == 4 || m == 6 || m == 9 || m == 11) && d == 31) { 
+      isBirthValid = false
+    }
+    else if (m == 2) {
+      if(((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) { // 윤년
+        if(d > 29) { // 윤년은 29일까지
+          isBirthValid = false
+        }
+      } else { // 평년
+        if(d > 28) { // 평년은 28일까지
+          isBirthValid = false
+        }
+      }
+    }
+
+    if(isBirthValid) { // 유효한 날짜
+      birthErrorMsgEl.textContent = ""
+      account.birth = birthArr.join('')
+    } else { // 유효하지 않은 날짜
+      birthErrorMsgEl.textContent = "생년월일을 다시 확인해주세요"
+      account.birth = null
+    }
+  }
+}
+
 const birthErrorMsgEl = document.querySelector('#info__birth .error-msg')
 // '출생 연도' 셀렉트 박스 option 목록 동적 생성
 const birthYearEl = document.querySelector('#birth-year')
@@ -37,9 +185,11 @@ birthYearEl.addEventListener('focus', function () {
   }
 });
 
-birthYearEl.addEventListener('change', (event) => {
-  birthArr[0] = event.target.value
-  isbirthValid(birthArr)
+birthYearEl.addEventListener('change', () => {
+  birthArr[0] = birthYearEl.value
+  birthYearEl.style.color = "#383838"
+  checkBirthValid(birthArr)
+  console.log(account, birthArr)
 });
 
 // 월 select box
@@ -50,16 +200,21 @@ birthMonthEl.addEventListener('focus', function () {
     isMonthOptionExisted = true
     for(var i = 1; i <= 12; i++) {
       const monthOption = document.createElement('option')
-      monthOption.setAttribute('value', i)
+      if(i < 10)
+        monthOption.setAttribute('value', '0' + i)
+      else
+        monthOption.setAttribute('value', i)
       monthOption.innerText = i
       this.appendChild(monthOption);
     }
   }
 });
 
-birthMonthEl.addEventListener('change', (event) => {
-  birthArr[1] = event.target.value
-  isbirthValid(birthArr)
+birthMonthEl.addEventListener('change', () => {
+  birthArr[1] = birthMonthEl.value
+  birthMonthEl.style.color = "#383838"
+  checkBirthValid(birthArr)
+  console.log(account, birthArr)
 });
 
 // 일 select box
@@ -70,51 +225,40 @@ birthDayEl.addEventListener('focus', function () {
     isDayOptionExisted = true
     for(var i = 1; i <= 31; i++) {
       const dayOption = document.createElement('option')
-      dayOption.setAttribute('value', i)
+      if(i < 10)
+        dayOption.setAttribute('value', '0' + i)
+      else
+        dayOption.setAttribute('value', i)
       dayOption.innerText = i
       this.appendChild(dayOption);
     }
   }
 });
 
-birthDayEl.addEventListener('change', (event) => {
-  birthArr[2] = event.target.value
-  isbirthValid(birthArr)
+birthDayEl.addEventListener('change', () => {
+  birthArr[2] = birthDayEl.value
+  birthDayEl.style.color = "#383838"
+  checkBirthValid(birthArr)
+  console.log(account, birthArr)
 });
 
+/*** SECTION - MOBILE ***/
+const mobileInputEl = document.querySelector('#info__mobile input')
+const mobileErrorMsgEl = document.querySelector('#info__mobile .error-msg')
+mobileInputEl.addEventListener('change', () => {
+  const mobileRegExp = /^010([0-9]{4})([0-9]{4})$/
+  if(mobileRegExp.test(mobileInputEl.value)) { // 유효성 검사 성공
+    account.mobile = mobileInputEl.value
+    mobileErrorMsgEl.textContent = ""
+  } else { // 유효성 검사 실패
+    account.mobile = null
+    mobileErrorMsgEl.textContent = errMsg.mobile
+  }
+  console.log(account)
+});
+
+/*** SUBMIT ***/
 const submitBtn = document.querySelector('#submit')
 submitBtn.addEventListener('click', function() {
-  console.log(birthArr)
+  console.log(account)
 })
-
-/* 유효한 날짜인지 여부 확인 (윤년/평년) */
-function isbirthValid(birthArr) {
-  isValid = true
-  y = birthArr[0]
-  m = birthArr[1]
-  d = birthArr[2]
-  // 생년월일 모두 선택 완료 시
-  if(y > 0 && m > 0 && d > 0) {
-    if ((m == 4 || m == 6 || m == 9 || m == 11) && d == 31) { 
-      isValid = false
-    }
-    else if (m == 2) {
-      if(((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) { // 윤년
-        if(d > 29) { // 윤년은 29일까지
-          isValid = false
-        }
-      } else { // 평년
-        if(d > 28) { // 평년은 28일까지
-          isValid = false
-        }
-      }
-    }
-  }
-
-  if(isValid) {
-    birthErrorMsgEl.textContent = ""
-  } else {
-    birthErrorMsgEl.style.color = "red"
-    birthErrorMsgEl.textContent = "생년월일을 다시 확인해주세요"
-  }
-}

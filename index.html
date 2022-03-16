@@ -30,18 +30,18 @@
             <input class="box" type="text" placeholder="아이디 입력(6~20자)"/>
             <button>중복 확인</button>
           </div>
-          <div class="error-msg">사용할 수 없는 아이디입니다</div>
+          <div class="error-msg"></div>
         </div>
-        <div class="info">
+        <div class="info" id="info__pw">
           <input class="box" type="password" placeholder="비밀번호 입력 (문자, 숫자, 특수문자 포함 8~20자)"/>
-          <div class="error-msg">20자 이내의 비밀번호를 입력해주세요</div>
+          <div class="error-msg"></div>
         </div>
-        <div class="info">
+        <div class="info" id="info__pwRe">
           <input class="box" type="password" placeholder="비밀번호 재입력"/>
-          <div class="error-msg">비밀번호가 일치하지 않습니다</div>
+          <div class="error-msg"></div>
         </div>
         <div class="info" id="info__email">
-          <input class="box" type="text" placeholder="이메일 입력"/>
+          <input class="box" id="email-txt" type="text" placeholder="이메일 입력"/>
           <span>@</span>
           <input class="box" id="domain-txt" type="text"/>
           <select class="box" id="domain-list">
@@ -68,9 +68,9 @@
           <div class="error-msg"></div>
         </div>
         <!-- <div id="print-date"></div> -->
-        <div class="info">
+        <div class="info" id="info__mobile">
           <input class="box" type="text" placeholder="휴대폰 번호 입력 (‘-’ 제외 11자리 입력)"/>
-          <div class="error-msg">‘-’ 제외 11자리를 입력해주세요</div>
+          <div class="error-msg"></div>
         </div>
       </section>
       <button id="submit">가입하기</button>
