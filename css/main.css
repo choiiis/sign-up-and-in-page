@@ -78,6 +78,7 @@ option {
 .container {
   position: absolute;
   display: flex;
+  flex-direction: column;
   width: 450px;
   height: 800px;
   top: 0;
@@ -112,7 +113,7 @@ header h2 {
 
 /* SECTION */
 section {
-  margin-top: 50px;
+  margin: 50px 0 25px 0;
 }
 
 /* SECTION - ID */
@@ -186,8 +187,18 @@ section {
 button#submit {
   width: 200px;
   height: 45px;
-  margin-top: 35px;
+  /* margin-top: 35px; */
   border-radius: 3px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   font-size: 15px;
+}
+
+/* RESULT */
+#result-fail {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 5px;
+  text-align: center;
+  color: #333;
+  font-size: 13px;
 }

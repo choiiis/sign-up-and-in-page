@@ -26,17 +26,33 @@ const account = {
 /*** SECTION - ID ***/
 const idInputEl = document.querySelector('#info__id input')
 const idErrorMsgEl = document.querySelector('#info__id .error-msg')
+const idCheckBtn = document.querySelector('#id-check')
 idInputEl.addEventListener('change', () => {
   const idRegExp = /^[a-zA-Z0-9]{6,20}$/
-  if(idRegExp.test(idInputEl.value)) { // 유효성 검사 성공
+  if(idRegExp.test(idInputEl.value)) { // 정규식 조건 만족 O
     idErrorMsgEl.textContent = ""
     account.id = idInputEl.value
-  } else { // 유효성 검사 실패
+  } else { // 정규식 조건 만족 X
+    idErrorMsgEl.style.color = "red"
     idErrorMsgEl.textContent = errMsg.id.invalid
     account.id = null
   }
   console.log(account)
 });
+
+idCheckBtn.addEventListener('click', () => {
+  const randVal = Math.floor(Math.random() * 10)
+  if(account.id !== null) {
+    if(randVal < 7) {
+      idErrorMsgEl.style.color = "green"
+      idErrorMsgEl.textContent = errMsg.id.success
+    }
+    else {
+      idErrorMsgEl.style.color = "red"
+      idErrorMsgEl.textContent = errMsg.id.fail
+    }
+  }
+})
 
 /*** SECTION - PASSWORD ***/
 // pwVal: 패스워드, pwReVal: 패스워드 재입력, isPwValid: 패스워드 유효 여부
@@ -44,7 +60,7 @@ let pwVal = "", pwReVal = "", isPwValid = false
 // 비밀번호와 재입력 값 일치 여부
 function checkPwValid() {
   account.pw = null
-  if(pwVal === "" && pwReVal === "") { // 미입력
+  if(pwReVal === "") { // 미입력
     pwReErrorMsgEl.textContent = ""
   }
   else if(pwVal === pwReVal) { // 비밀번호 재입력 일치
@@ -246,7 +262,7 @@ birthDayEl.addEventListener('change', () => {
 const mobileInputEl = document.querySelector('#info__mobile input')
 const mobileErrorMsgEl = document.querySelector('#info__mobile .error-msg')
 mobileInputEl.addEventListener('change', () => {
-  const mobileRegExp = /^010([0-9]{4})([0-9]{4})$/
+  const mobileRegExp = /^010([0-9]{8})$/
   if(mobileRegExp.test(mobileInputEl.value)) { // 유효성 검사 성공
     account.mobile = mobileInputEl.value
     mobileErrorMsgEl.textContent = ""
@@ -259,6 +275,27 @@ mobileInputEl.addEventListener('change', () => {
 
 /*** SUBMIT ***/
 const submitBtn = document.querySelector('#submit')
+const resultFailEl = document.querySelector('#result-fail')
 submitBtn.addEventListener('click', function() {
-  console.log(account)
+  let isAllFilled = true
+  const word = {  
+    id: "아이디를",
+    pw: "비밀번호를",
+    email: "이메일을",
+    birth: "생년월일을",
+    mobile: "휴대폰 번호를"
+  }
+  for(element in account) {
+    if(account[element] === null) {
+      resultFailEl.textContent = word[element] + " 다시 한번 확인해주세요"
+      isAllFilled = false
+      break
+    }
+  }
+  if (isAllFilled === true) {
+    resultFailEl.textContent = ""
+    setTimeout(function() {
+      alert("서버 전송 데이터 : " + JSON.stringify(account))
+    }, 300)
+  }
 })
