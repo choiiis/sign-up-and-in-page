@@ -35,7 +35,7 @@ signInBtn.addEventListener('click', () => {
       alert("비밀번호를 확인해주세요.")
     }
     else {
-      window.location.href = '/welcome/index.html';
+      location.href = "/result/index.html"
     }
   }
 });
