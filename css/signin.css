@@ -2,7 +2,7 @@
 body {
   position: relative;
   height: 100vh;
-  min-height: 550px;
+  min-height: 600px;
   color: #333;
   font-size: 15px;
   font-weight: 400;
@@ -59,7 +59,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   width: 450px;
-  height: 500px;
+  height: 550px;
   min-width: 450px;
   top: 0;
   bottom: 0;
@@ -167,7 +167,7 @@ button#signin {
   }
   .container {
     width: 100vw;
-    height: 700px;
+    height: 500px;
     border: 0px;
     box-shadow: none;
   }
